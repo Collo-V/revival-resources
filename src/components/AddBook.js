@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {message} from "../commons/swal";
 import {useSelector} from "react-redux";
-import ReactQuill,{Quill} from 'react-quill';
+import {Quill} from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import '../assets/styles/books.css'
 import {getDocs,setDoc,doc} from 'firebase/firestore'
@@ -29,7 +29,7 @@ const toolbar = [
 ]
 
 function AddBook({change}) {
-    const {authors, categories,deletedIds} = useSelector(state => state.books)
+    const {deletedIds} = useSelector(state => state.books)
     const [title,setTitle] = useState('')
     const [category,setCategory] = useState('')
     const [subCategory,setSubCategory] = useState('')
@@ -39,9 +39,6 @@ function AddBook({change}) {
     const [tempQuill,setTempQuill] = useState('')
     const [nextChapterTitle,setNextChapterTitle] = useState('')
     const [nextChapterContent,setNextChapterContent] = useState('')
-    const [otherAuthor,setOtherAuthor] = useState('')
-    const [otherCategory,setOtherCategory] = useState('')
-    const [otherSubCat,setOtherSubCat] = useState([])
     const formIsValid = (id)=>{
         let form = document.getElementById(id)
         let inputs = form.getElementsByTagName('input')
@@ -168,7 +165,7 @@ function AddBook({change}) {
             })
             setNextChapterContent(quill)
         }
-    })
+    },[])
     const saveChapter = (index) => {
         let edit = typeof (index) === 'number'
         let contId = edit? 'chapter-'+index+'-form':'next-chapter-cont'
@@ -203,13 +200,11 @@ function AddBook({change}) {
 
     }
     useEffect(()=>{
-        let divs = document.getElementsByClassName('book-chapter-cont')
-        // for (let i = 0; i < [].length; i++) {
-        //     makeDraggable(divs[i].id)
+        // let divs = document.getElementsByClassName('book-chapter-cont')
+
+        // function makeDraggable(id){
+        //     dragElement(document.getElementById(id));
         // }
-        function makeDraggable(id){
-            dragElement(document.getElementById(id));
-        }
         function dragElement(elmnt) { var pos1 = 0, pos2 = 0, pos3 = 0,
             pos4 = 0; if (document.getElementById(elmnt.id + "header")) {
             // if present, the header is where you move the DIV from:
@@ -222,8 +217,7 @@ function AddBook({change}) {
             function dragMouseDown(e) {
                 e = e ||window.event; e.preventDefault();
                 // get the mouse cursor position at
-                startup: pos3 = e.clientX; pos4 =
-                    e.clientY; document.onmouseup = closeDragElement;
+                startup: pos3 = e.clientX; pos4 = e.clientY; document.onmouseup = closeDragElement;
                 // call a function whenever the cursor moves:
                 document.onmousemove = elementDrag;
             }
