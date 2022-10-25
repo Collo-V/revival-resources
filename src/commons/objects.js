@@ -158,9 +158,9 @@ function removeFromArray(array,item){
     }else{
         let index = array.indexOf(item)
         try {
-            if (index == array.length - 1) {
+            if (index === array.length - 1) {
                 array.pop()
-            } else if (index == 0) {
+            } else if (index === 0) {
                 array = array.slice(1)
             } else {
                 array = array.slice(0, index).concat(array.slice(index + 1))

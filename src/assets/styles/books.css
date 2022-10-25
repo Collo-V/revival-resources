@@ -1,0 +1,9 @@
+.chapter-cont{
+    @apply hidden
+}
+.expanded-chapter .chapter-cont{
+    @apply block
+}
+.expanded-chapter .chapter-title{
+    @apply pb-0;
+}

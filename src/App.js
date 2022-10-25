@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import {Routes as Switch,Route,BrowserRouter as Router, } from 'react-router-dom'
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import Home from "./pages/Home";
+import Books from "./pages/Books";
+import {books} from "./firebase";
+import {onSnapshot} from 'firebase/firestore'
+import {writeBooks} from "./store/reducers/books";
 
 function App() {
+  const dispatch = useDispatch()
+  const {darkMode} = useSelector(state => state.settings)
+  useEffect(()=>{
+    let html =document.getElementsByTagName('html')[0]
+    if(darkMode){
+      html.classList.add('dark')
+    }else {
+      html.classList.remove('dark')
+    }
+  },[darkMode])
+  useEffect(()=>{
+    onSnapshot(books,snapshot => {
+      let tempBooks = {}
+      let docs = snapshot.docs
+      docs.forEach(doc=>{
+        tempBooks[doc.id] = {...doc.data(),id:doc.id}
+      })
+      dispatch(writeBooks(tempBooks))
+
+    })
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router >
+        <div className="flex h-screen-h bg-slate-100 dark:bg-slate-900 dark:text-white">
+          <div className="w-full">
+            <Switch>
+              <Route path='/' element={<Home/>}/>
+              <Route path='/books' element={<Books/>}/>
+            </Switch>
+          </div>
+        </div>
+      </Router>
+
+
     </div>
   );
 }

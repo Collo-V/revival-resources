@@ -3,32 +3,28 @@ import {insertKey} from "../../commons/objects";
 export const productSlice = createSlice({
     name:'products',
     initialState:{
-        products:{} ,
-        offers:{}  ,
+        books:{} ,
         categories:[],
-        brands:[]
+        authors:[],
+        deletedIds:[]
     },
     reducers:{
-        writeProducts(state,action){
-            const products = action.payload
-            state.products = insertKey(products,'id')
+        writeBooks(state,action){
+            const books = action.payload
+            state.books = books
 
         } ,
-        writeOffers(state,action){
-            state.offers = action.payload
-
-        },
-        writeCategories(state,action){
+       riteCategories(state,action){
             state.categories = action.payload
 
         },
-        writeBrands(state,action){
-            state.brands = action.payload
+        writeAuthors(state,action){
+            state.authors = action.payload
 
         }
 
     }
 
 })
-export const {writeProducts,writeOffers,writeCategories,writeBrands} = productSlice.actions
+export const {writeBooks,writeCategories,writeAuthors} = productSlice.actions
 export default productSlice.reducer
