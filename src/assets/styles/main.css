@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+
+
+.vue-shadow-sm{
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)!important;
+}
+.vue-shadow{
+    box-shadow: 0 3px 3px -2px rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12)!important
+}
+.vue-shadow-md{
+    box-shadow: 0 6px 6px -3px rgba(0,0,0,.2),0 10px 14px 1px rgba(0,0,0,.14),0 4px 18px 3px rgba(0,0,0,.12)!important
+}
+.vue-shadow-lg{
+    box-shadow: 0 10px 13px -6px rgba(0,0,0,.2),0 20px 31px 3px rgba(0,0,0,.14),0 8px 38px 7px rgba(0,0,0,.12)!important;
+}
+
+
+*,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+ul,ol{list-style-position: inside;}
+ul{padding:0;margin:0;padding-inline-start:0}
+h1,h2,h3,h4,h5{margin:0;font-weight: 700;font-size: initial}
+a{text-decoration:none;color:inherit}
+textarea,button{outline:none;@apply border-0 border-gray-300 border-solid; cursor:pointer;background-color:inherit;color:inherit}
+button:focus{outline:none}
+*{
+    @apply border-solid border-gray-300;
+}
+input,button,optgroup,select,textarea{
+    font-family:inherit;font-size:100%;font-weight:inherit;color:inherit;line-height:inherit;margin:0;padding:0
+}
+input:focus,textarea:focus{outline:none}
+/*[class*='border']{border:solid 0px #b8c2cc}*/
+.dropdown-cont .dropdown,.dropdown-cont .dropdown.flex{display:none}
+.dropdown-cont:hover>.dropdown{display:initial}
+.dropdown-cont:hover>.dropdown.flex{display:flex}
+.dropdown-cont:hover>.dropdown.block{display:block}
+.dropdown-cont:hover>.dropdown.inline{display:inline}
+.float-right{float:right}
+.float-left{float:left}
+.text-ellipsis{text-overflow:ellipsis}
+.whitespace-nowrap{whitespace:nowrap}
+.input-absolute-label:focus + .absolute-label,.input-valid + .absolute-label,
+.input-invalid + .absolute-label{top: 0;color: #1476f2;font-size: smaller}
+
+.hover\\:pause-animation:hover{animation-play-state: paused}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+.custom-scroll.scroll-0::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+/*.scroll-0 ::-webkit-scrollbar {*/
+/*    display: none;*/
+/*}*/
+/*.scroll-0{*/
+/*    -ms-overflow-style: none;  !* IE and Edge *!*/
+/*    scrollbar-width: none;  !* Firefox *!*/
+/*}*/
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+}
+
+/*.scroll-0 ::-webkit-scrollbar-track,.scroll-0::-webkit-scrollbar-thumb {*/
+/*    border-radius: 0;*/
+/*}*/
+
+/* Handle on hover */
+/*::-webkit-scrollbar-thumb:hover {
+  background: #98CB00;
+}*/
+.v-center{transform:translateY(-50%)}
+.h-center{transform:translateX(-50%)}
+.vh-center{transform:translate(-50%,-50%)}
+
+.page-bullet{
+    @apply h-3 w-3 rounded-full bg-slate-400 mr-2;
+}
+
+

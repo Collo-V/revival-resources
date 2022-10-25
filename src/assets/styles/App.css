@@ -1,0 +1,11 @@
+
+.link-active{
+  @apply text-primary
+}
+
+.expanded-filter + div{
+  display: grid;
+}
+.input-invalid{
+  @apply border-red-600;
+}
